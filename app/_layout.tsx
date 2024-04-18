@@ -1,11 +1,13 @@
 import { useFonts } from 'expo-font';
-import { SplashScreen, Stack } from 'expo-router';
-import { useEffect } from 'react';
-import { TamaguiProvider } from 'tamagui';
+import { SplashScreen, Slot } from 'expo-router';
+import React, { useEffect } from 'react';
+import { TamaguiProvider, Theme } from 'tamagui';
 
 import config from '../tamagui.config';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { Drawer } from 'expo-router/drawer';
+
+
+SplashScreen.preventAutoHideAsync();
 
 export default function Layout() {
   const [loaded] = useFonts({
@@ -23,8 +25,10 @@ export default function Layout() {
 
   return (
     <TamaguiProvider config={config}>
-      <GestureHandlerRootView style={{ flex: 1 }} >
-        <Drawer />
+      <GestureHandlerRootView style={{ flex: 1 }}>
+          <Theme name={'blue'}>
+            <Slot />
+          </Theme>
       </GestureHandlerRootView>
     </TamaguiProvider>
   );
