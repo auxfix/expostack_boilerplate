@@ -4,6 +4,8 @@ import { useEffect } from 'react';
 import { TamaguiProvider } from 'tamagui';
 
 import config from '../tamagui.config';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { Drawer } from 'expo-router/drawer';
 
 export default function Layout() {
   const [loaded] = useFonts({
@@ -21,7 +23,9 @@ export default function Layout() {
 
   return (
     <TamaguiProvider config={config}>
-      <Stack />
+      <GestureHandlerRootView style={{ flex: 1 }} >
+        <Drawer />
+      </GestureHandlerRootView>
     </TamaguiProvider>
   );
 }
