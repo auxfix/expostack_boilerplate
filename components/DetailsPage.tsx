@@ -10,14 +10,15 @@ import { useMMKVObject } from 'react-native-mmkv';
 import { Favorite } from '@/interfaces/favorites';
 import { Stack } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
+import { useState } from 'react';
 
 type DetailsPageProps = {
   id: string;
   mediaType: MediaType;
 };
 const DetailsPage = ({ id, mediaType }: DetailsPageProps) => {
-  const [isFavorite, setIsFavorite] = useMMKVBoolean(`${mediaType}-${id}`);
-  const [favorites, setFavorites] = useMMKVObject<Favorite[]>('favorites');
+  const [isFavorite, setIsFavorite] = useState(`${mediaType}-${id}`);
+  //const [favorites, setFavorites] = useMMKVObject<Favorite[]>('favorites');
   const theme = useTheme();
 
   const movieQuery = useQuery({
@@ -25,7 +26,7 @@ const DetailsPage = ({ id, mediaType }: DetailsPageProps) => {
     queryFn: () => getMovieDetails(+id, mediaType),
   });
 
-  const toggleFavorite = () => {
+  /*const toggleFavorite = () => {
     const current = favorites || [];
 
     if (!isFavorite) {
@@ -43,7 +44,7 @@ const DetailsPage = ({ id, mediaType }: DetailsPageProps) => {
     }
 
     setIsFavorite(!isFavorite);
-  };
+  };*/
 
   return (
     <Main>
@@ -52,7 +53,7 @@ const DetailsPage = ({ id, mediaType }: DetailsPageProps) => {
           headerRight: () => (
             <Button
               unstyled
-              onPress={toggleFavorite}
+              onPress={() => {}}
               scale={0.95}
               hoverStyle={{ scale: 0.925 }}
               pressStyle={{ scale: 0.975 }}
