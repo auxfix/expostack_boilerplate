@@ -1,19 +1,28 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 import { Stack } from 'expo-router'
-import { colorTokens } from '@tamagui/themes'
-import { Colors } from 'react-native/Libraries/NewAppScreen'
+import { DrawerToggleButton } from '@react-navigation/drawer'
+import { useTheme } from 'tamagui'
 
 export default function _layout() {
+  const theme = useTheme();
+
   return (
     <Stack
       screenOptions={{
         headerStyle: {
-          backgroundColor: colorTokens.dark.blue.blue7
-        }
+          backgroundColor: theme.blue8.get(),
+        },
+        headerTitleAlign: "center",
+        headerTintColor: '#fff',
       }}
     >
-      
+      <Stack.Screen
+        name="index"
+        options={{
+          title: 'Moviestar',
+          headerLeft: () => <DrawerToggleButton tintColor='#fff' />
+      }} />
     </Stack>
   )
 }

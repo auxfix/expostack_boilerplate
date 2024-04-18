@@ -1,14 +1,16 @@
 import { Ionicons } from "@expo/vector-icons";
-import { colorTokens } from "@tamagui/themes";
 import Drawer from "expo-router/drawer";
+import { useTheme } from "tamagui";
 
 export default function Layout() {
+    const theme = useTheme();
+
 
   return (
     <Drawer screenOptions={{
         headerShown: false,
-        drawerActiveTintColor: "#fff",
-        drawerActiveBackgroundColor: colorTokens.dark.blue.blue7
+        drawerActiveTintColor: '#fff',
+        drawerActiveBackgroundColor: theme.blue8.get()
     }}>
         <Drawer.Screen name="home" options={{
             title: 'Moviestar',
@@ -17,9 +19,6 @@ export default function Layout() {
         <Drawer.Screen name="favorites" options={{
             title: 'Favorites',
             drawerIcon: ({color, size}) => <Ionicons name='star' size={size} color={color} />,
-        }} />
-        <Drawer.Screen name="index" options={{
-            drawerItemStyle: { display: 'none' }
         }} />
     </Drawer>
   );
